@@ -119,6 +119,37 @@
           </tr>
 
         </tbody></table>
+        <h2>Projects</h2>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+          <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/marl.png" alt="marl" style="border-style: none" width="200">
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+                <papertitle>Video summarization with flexible multi-agent reinforcement learning</papertitle>
+              <br> 
+              <strong>Facheng Yu</strong>,
+              Haomiao Tang,
+              Bo Hu,
+              Tianhao Dai
+              <br>
+              [
+              <a href="images/marl_slides.pdf">Slides</a> &nbsp/&nbsp
+              <a href="https://github.com/fachengyu/MARL-Video-Summarization">Code</a>
+               ]
+              <br>
+              <p>
+                MARL is a deep learning structure containing a deep neural network to generate the policy and several agents to perform with the policy, 
+                and we need to use this to pick up the important clips of a video. Our first idea was to assume that the agents work independently but share the same policy, 
+                so we built a network consisting of CNN layers, LSTM layers and the FNN layers to receive the context and generate the policy. We referred to two important 
+                paper, and adopted the same reward settings. Finally, we optimized the network with the Monte Carlo gradient method.
+
+</p>
+            </td>
+          </tr>
+
+        </tbody></table>
 
       </td>
     </tr>
