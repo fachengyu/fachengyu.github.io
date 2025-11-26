@@ -54,29 +54,8 @@
           
               </p>
 
-        <h2>Preprints</h2>
+        <h2>Preprint</h2>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-
-            <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
-            <td style="padding:20px;width:100%;vertical-align:middle">
-              <papertitle> Stochastic Gradients under Nuisances</papertitle>  
-    
-              <br>
-              <strong>Facheng Yu</strong>, Ronak Mehta, Alex Luedtke, Zaid Harchaoui.
-              <br>
-              <em>NeurIPS 2025</em>
-              <br>
-              [
-              <a href="https://openreview.net/pdf/e79fa36e5ce4b35fe43205efd4d0a24002e43a4d.pdf">Paper</a> &nbsp/&nbsp
-              <a href="https://github.com/fachengyu/OSGD_25">Code</a>
-              ]
-               
-              <p>
-                Stochastic gradient optimization is the dominant learning paradigm for a variety of scenarios, from classical supervised learning to modern self-supervised learning. We consider stochastic gradient algorithms for learning problems whose objectives rely on unknown nuisance parameters, and establish non-asymptotic convergence guarantees.
-                <br>
-</p>
-            </td>
-          </tr>
 
           
           <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
@@ -101,23 +80,32 @@
 
 
 
-<!--           </tbody></table>
+          </tbody></table>
 
 
-          <h2>Software</h2>
+          <h2>Publication</h2>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-          <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
+            <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
             <td style="padding:20px;width:100%;vertical-align:middle">
-                <papertitle> OSGD</papertitle>
+              <papertitle> Stochastic Gradients under Nuisances</papertitle>  
+    
+              <br>
+              <strong>Facheng Yu</strong>, Ronak Mehta, Alex Luedtke, Zaid Harchaoui.
+              <br>
+              <em>NeurIPS 2025</em>
               <br>
               [
+              <a href="https://openreview.net/pdf/e79fa36e5ce4b35fe43205efd4d0a24002e43a4d.pdf">Paper</a> &nbsp/&nbsp
               <a href="https://github.com/fachengyu/OSGD_25">Code</a>
               ]
-              <br>
-              Companion code to the preprint: <em>Stochastic Gradient under Nuisances</em>.
+               
+              <p>
+                Stochastic gradient optimization is the dominant learning paradigm for a variety of scenarios, from classical supervised learning to modern self-supervised learning. We consider stochastic gradient algorithms for learning problems whose objectives rely on unknown nuisance parameters, and establish non-asymptotic convergence guarantees.
+                <br>
+</p>
             </td>
-          </tr> -->
+          </tr>
           
 
         </tbody></table>
@@ -200,6 +188,7 @@
 
 
        <h2>Miscellaneous</h2>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
               <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
             <td style="padding:20px;width:100%;vertical-align:middle">
                 <papertitle>Research on Improved GNSS-PWV Three Factor Threshold Rainfall Forecasting Method [Chinese]</papertitle>
@@ -256,6 +245,17 @@
     </tr>
   </table>
   Template from <a href="https://jonbarron.info/">this website</a>.
+  
+  <script>
+    function nightsight_start() {
+      // Add hover effect to paper entries
+      event.target.closest('tr').style.backgroundColor = '#f5f5f5';
+    }
+    function nightsight_stop() {
+      // Remove hover effect from paper entries
+      event.target.closest('tr').style.backgroundColor = 'transparent';
+    }
+  </script>
 </body>
 
 </html>
