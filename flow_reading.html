@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flow Reading Group</title>
+  <style>
+    :root{
+      /* Quick theme edits */
+      --bg: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: #e2e8f0;
+      --card: #f8fafc;
+      --accent: #2563eb;
+
+      --maxw: 980px;
+      --radius: 14px;
+      --pad: 18px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    * { box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    /* Top banner */
+    header{
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .banner{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand{
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .brand h1{
+      font-size: 18px;
+      margin: 0;
+      letter-spacing: 0.2px;
+    }
+    .brand .tag{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #fff;
+    }
+    .logos{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logos img{
+      height: 34px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      filter: saturate(1.05);
+    }
+
+    main{
+      max-width: var(--maxw);
+      margin: 18px auto 60px;
+      padding: 0 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--pad);
+    }
+
+    .grid-2{
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 14px;
+    }
+    @media (max-width: 840px){
+      .grid-2{ grid-template-columns: 1fr; }
+    }
+
+    h2{
+      font-size: 15px;
+      margin: 0 0 10px;
+      letter-spacing: 0.2px;
+    }
+    p{ margin: 0 0 10px; color: var(--text); }
+    .muted{ color: var(--muted); }
+
+    .pillrow{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-size: 13px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    /* Table */
+    table{
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+    }
+    thead th{
+      text-align: left;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+    }
+    tbody td{
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 14px;
+    }
+    tbody tr:last-child td{ border-bottom: none; }
+    .topic{
+      font-weight: 600;
+    }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      padding: 2px 6px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--muted);
+    }
+
+    footer{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 18px 40px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="banner">
+      <div class="brand">
+        <h1>Flow Reading Group</h1>
+        <span class="tag">Research-focused • weekly</span>
+      </div>
+
+      <!-- Put these logo files next to this HTML:
+           uw.png, cmu.png, wisc.png, nsf.jpeg -->
+      <div class="logos" aria-label="Affiliations">
+        <img src="images/uw.png" alt="University of Washington" />
+        <img src="images/cmu.png" alt="Carnegie Mellon University" />
+        <img src="images/wisc.png" alt="University of Wisconsin–Madison" />
+        <img src="images/nsf.jpeg" alt="National Science Foundation" />
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="card grid-2">
+      <div>
+        <h2>About</h2>
+        <p>
+          A weekly reading group on research topics in flow matching.
+          We focus on core ideas, proofs/intuition, and discussion-driven understanding.
+        </p>
+        <!-- <p class="muted">
+          Edit this text freely. This page is designed to be minimal, structured, and easy to maintain.
+        </p> -->
+
+        <div class="pillrow" aria-label="Time information">
+          <span class="pill"><span class="dot"></span><strong>Tuesdays</strong></span>
+          <span class="pill"><span class="dot"></span>11:00–12:00 <strong>Pacific</strong></span>
+          <span class="pill"><span class="dot"></span>13:00–14:00 <strong>Central</strong></span>
+          <span class="pill"><span class="dot"></span>14:00–15:00 <strong>Eastern</strong></span>
+        </div>
+      </div>
+
+      <div>
+        <h2>Logistics</h2>
+        <p class="muted">
+          Location: Zoom<br />
+          <!-- Organizer: Zaid Harchaoui<br/> -->
+          Contact: <a href="mailto:you@uw.edu">fachengy@uw.edu</a>
+        </p>
+        <!-- <p class="muted">
+          Tip: To add dates, edit the <span class="kbd">SCHEDULE</span> array in the script below.
+        </p> -->
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Schedule</h2>
+      <!-- <p class="muted" style="margin-bottom:12px;">
+        Columns: Date • Time (PT/CT/ET) • Topic • Speaker(s). Add more rows by editing the schedule list.
+      </p> -->
+
+      <table aria-label="Reading group schedule">
+        <thead>
+          <tr>
+            <th style="width: 140px;">Date</th>
+            <th>Topic</th>
+            <th style="width: 220px;">Speaker(s)</th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body">
+          <!-- Filled by JavaScript -->
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Format</h2>
+      <ul style="margin: 0; padding-left: 18px; color: var(--text);">
+        <li>~35–45 min presentation + discussion</li>
+        <li>We aim for “paper → key ideas → questions → next steps”</li>
+        <li>Future topics can include normalizing flows, diffusion/flow matching, etc.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      Last updated: <span id="last-updated"></span>.
+      <!-- <span class="muted">Edit styles in <span class="kbd">:root</span> and schedule in <span class="kbd">SCHEDULE</span>.</span>
+    </div> -->
+  </footer>
+
+  <script>
+    /**
+     * Edit the schedule here.
+     * - date: "YYYY-MM-DD" (keeps sorting easy)
+     * - topic: free text
+     * - speakers: free text
+     * If topic/speakers are unknown, use "TBD".
+     */
+
+    const SCHEDULE = [
+      { date: "2026-02-03", topic: "TBD", speakers: "TBD" },
+      { date: "2026-02-10", topic: "TBD", speakers: "TBD" },
+      { date: "2026-02-17", topic: "TBD", speakers: "TBD" },
+      { date: "2026-02-24", topic: "TBD", speakers: "TBD" },
+      { date: "2026-03-02", topic: "TBD", speakers: "TBD" },
+      { date: "2026-03-09", topic: "TBD", speakers: "TBD" },
+      { date: "2026-03-16", topic: "TBD", speakers: "TBD" }
+    ];
+
+    // Render table
+    const tbody = document.getElementById("schedule-body");
+
+    // Sort ascending by date
+    SCHEDULE.sort((a, b) => a.date.localeCompare(b.date));
+
+    for (const item of SCHEDULE) {
+      const tr = document.createElement("tr");
+
+      const tdDate = document.createElement("td");
+      tdDate.textContent = item.date;
+
+      const tdTopic = document.createElement("td");
+      tdTopic.innerHTML = `<div class="topic">${escapeHtml(item.topic)}</div>`;
+
+      const tdSpeakers = document.createElement("td");
+      tdSpeakers.textContent = item.speakers;
+
+      tr.appendChild(tdDate);
+      tr.appendChild(tdTopic);
+      tr.appendChild(tdSpeakers);
+
+      tbody.appendChild(tr);
+    }
+
+    // Footer timestamp
+    document.getElementById("last-updated").textContent =
+      new Date().toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
+
+    // Minimal HTML escaping for injected content
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+  </script>
+</body>
+</html>
