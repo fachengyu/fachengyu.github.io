@@ -72,12 +72,30 @@
       align-items: center;
       flex-wrap: wrap;
     }
-    .logos img{
+    /* .logos img{
       height: 34px;
       width: auto;
       display: block;
       object-fit: contain;
       filter: saturate(1.05);
+    } */
+    /* NEW: uniform logo boxes */
+    .logo-box{
+        width: 44px;                  /* all logos get same footprint */
+        height: 44px;
+        display: grid;
+        place-items: center;          /* perfectly centered */
+        padding: 4px;                 /* breathing room */
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    .logo-box img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;          /* preserve aspect ratio */
+        display: block;
     }
 
     main{
@@ -200,12 +218,19 @@
 
       <!-- Put these logo files next to this HTML:
            uw.png, cmu.png, wisc.png, nsf.jpeg -->
-      <div class="logos" aria-label="Affiliations">
+      <!-- <div class="logos" aria-label="Affiliations">
         <img src="images/uw.png" alt="University of Washington" />
         <img src="images/cmu.png" alt="Carnegie Mellon University" />
         <img src="images/wisc.png" alt="University of Wisconsin–Madison" />
         <img src="images/nsf.jpeg" alt="National Science Foundation" />
-      </div>
+      </div> -->
+        <div class="logos" aria-label="Affiliations">
+        <div class="logo-box"><img src="images/uw.png" alt="University of Washington" /></div>
+        <div class="logo-box"><img src="images/cmu.png" alt="Carnegie Mellon University" /></div>
+        <div class="logo-box"><img src="images/wisc.png" alt="University of Wisconsin–Madison" /></div>
+        <div class="logo-box"><img src="images/nsf.jpeg" alt="National Science Foundation" /></div>
+        </div>
+
     </div>
   </header>
 
