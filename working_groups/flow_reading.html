@@ -186,6 +186,23 @@
     .topic{
       font-weight: 600;
     }
+
+    .topic-links{
+  margin-top: 4px;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.topic-link{
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.topic-link:hover{
+  text-decoration: underline;
+}
+
     .kbd{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size: 12px;
@@ -312,13 +329,13 @@
      */
 
     const SCHEDULE = [
-      { date: "2026-02-03", topic: "Introduction of Normalizing Flows and Flow Matchings", speakers: "Facheng Yu" },
-      { date: "2026-02-10", topic: "TBD", speakers: "TBD" },
-      { date: "2026-02-17", topic: "TBD", speakers: "TBD" },
-      { date: "2026-02-24", topic: "TBD", speakers: "TBD" },
-      { date: "2026-03-02", topic: "TBD", speakers: "TBD" },
-      { date: "2026-03-09", topic: "TBD", speakers: "TBD" },
-      { date: "2026-03-16", topic: "TBD", speakers: "TBD" }
+      { date: "2026-02-03", topic: "Introduction of Normalizing Flows and Flow Matchings ", note_url: "materials/Normalizing flows and flow matching.pdf", paper_urls: ["https://arxiv.org/abs/2210.02747", "https://arxiv.org/abs/2310.03725"], speakers: "Facheng Yu" },
+      { date: "2026-02-10", topic: "Stochastic Interpolants and Flows", note_url: "", paper_urls: ["https://www.jmlr.org/papers/v26/23-1605.html"], speakers: "Garrett Mulcahy" },
+      { date: "2026-02-17", topic: "TBD", note_url: "", paper_urls: [], speakers: "TBD" },
+      { date: "2026-02-24", topic: "TBD", note_url: "", paper_urls: [], speakers: "TBD" },
+      { date: "2026-03-03", topic: "TBD", note_url: "", paper_urls: [], speakers: "TBD" },
+      { date: "2026-03-10", topic: "TBD", note_url: "", paper_urls: [], speakers: "TBD" },
+      { date: "2026-03-17", topic: "TBD", speakers: "TBD" }
     ];
 
     // Render table
@@ -334,7 +351,45 @@
       tdDate.textContent = item.date;
 
       const tdTopic = document.createElement("td");
-      tdTopic.innerHTML = `<div class="topic">${escapeHtml(item.topic)}</div>`;
+      // ---- Topic cell rendering (replace your current tdTopic code with this) ----
+const topicText = (item.topic || "").trim();
+
+// Build links
+const links = [];
+
+// Note
+if (item.note_url) {
+  links.push(
+    `<a class="topic-link" href="${item.note_url}" target="_blank" rel="noopener noreferrer">Note</a>`
+  );
+}
+
+// Paper(s): support either paper_url (single) or paper_urls (array)
+const paperList = Array.isArray(item.paper_urls)
+  ? item.paper_urls
+  : (item.paper_url ? [item.paper_url] : []);
+
+if (paperList.length === 1) {
+  links.push(
+    `<a class="topic-link" href="${paperList[0]}" target="_blank" rel="noopener noreferrer">Paper</a>`
+  );
+} else if (paperList.length > 1) {
+  const paperLinks = paperList.map((u, idx) =>
+    `<a class="topic-link" href="${u}" target="_blank" rel="noopener noreferrer">Paper${idx + 1}</a>`
+  );
+  links.push(paperLinks.join(", "));
+}
+
+// Show the second line only if:
+// 1) topic is not TBD, and 2) at least one link exists
+const showLinks = topicText && topicText.toUpperCase() !== "TBD" && links.length > 0;
+
+tdTopic.innerHTML = `
+  <div class="topic">${escapeHtml(topicText || "TBD")}</div>
+  ${showLinks ? `<div class="topic-links">[ ${links.join(" / ")} ]</div>` : ""}
+`;
+
+
 
       const tdSpeakers = document.createElement("td");
       tdSpeakers.textContent = item.speakers;
