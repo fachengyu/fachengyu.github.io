@@ -330,12 +330,12 @@
 
     const SCHEDULE = [
       { date: "2026-02-03", topic: "Introduction of Normalizing Flows and Flow Matchings ", note_url: "materials/Normalizing flows and flow matching.pdf", paper_urls: ["https://arxiv.org/abs/2210.02747", "https://arxiv.org/abs/2310.03725"], speakers: "Facheng Yu" },
-      { date: "2026-02-10", topic: "Stochastic Interpolants and Flows", note_url: "", paper_urls: ["https://www.jmlr.org/papers/v26/23-1605.html"], speakers: "Garrett Mulcahy" },
-      { date: "2026-02-17", topic: "TBD", note_url: "", paper_urls: [], speakers: "TBD" },
+      { date: "2026-02-10", topic: "Stochastic Interpolants and Flows - Part 1", note_url: "", paper_urls: ["https://www.jmlr.org/papers/v26/23-1605.html"], speakers: "Garrett Mulcahy" },
+      { date: "2026-02-17", topic: "Stochastic Interpolants and Flows - Part 2", note_url: "", paper_urls: ["https://www.jmlr.org/papers/v26/23-1605.html"], speakers: "Garrett Mulcahy" },
       { date: "2026-02-24", topic: "Discrete Diffusion Models", note_url: "", paper_urls: ["https://arxiv.org/abs/2402.04997", "https://arxiv.org/abs/2407.15595"], speakers: "Andre He" },
       { date: "2026-03-03", topic: "Fast Diffusion Models", note_url: "", paper_urls: [], speakers: "Eric Frankel" },
-      { date: "2026-03-10", topic: "TBD", note_url: "", paper_urls: [], speakers: "TBD" },
-      { date: "2026-03-17", topic: "TBD", speakers: "TBD" }
+      { date: "2026-03-10", topic: "Mathematical Foundations and Numerical Illustrations", note_url: "", paper_urls: [], speakers: "Nate Jung" },
+      // { date: "2026-03-17", topic: "TBD", speakers: "TBD" }
     ];
 
     // Render table
@@ -360,7 +360,7 @@ const links = [];
 // Note
 if (item.note_url) {
   links.push(
-    `<a class="topic-link" href="${item.note_url}" target="_blank" rel="noopener noreferrer">Note</a>`
+    `<a class="topic-link" href="${item.note_url}" target="_blank" rel="noopener noreferrer">Notes</a>`
   );
 }
 
