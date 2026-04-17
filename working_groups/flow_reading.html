@@ -127,6 +127,15 @@
       margin: 0 0 10px;
       letter-spacing: 0.2px;
     }
+    .schedule-heading{
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 10px;
+      letter-spacing: 0.2px;
+      color: var(--text);
+    }
+    .schedule-heading + table{ margin-bottom: 18px; }
+    .schedule-heading:not(:first-of-type){ margin-top: 22px; }
     p{ margin: 0 0 10px; color: var(--text); }
     .muted{ color: var(--muted); }
 
@@ -290,7 +299,8 @@
         Columns: Date • Time (PT/CT/ET) • Topic • Speaker(s). Add more rows by editing the schedule list.
       </p> -->
 
-      <table aria-label="Reading group schedule">
+      <h3 class="schedule-heading">Spring 2026</h3>
+      <table aria-label="Spring 2026 reading group schedule">
         <thead>
           <tr>
             <th style="width: 140px;">Date</th>
@@ -298,7 +308,21 @@
             <th style="width: 220px;">Speaker(s)</th>
           </tr>
         </thead>
-        <tbody id="schedule-body">
+        <tbody id="schedule-body-spring">
+          <!-- Filled by JavaScript -->
+        </tbody>
+      </table>
+
+      <h3 class="schedule-heading">Winter 2026</h3>
+      <table aria-label="Winter 2026 reading group schedule">
+        <thead>
+          <tr>
+            <th style="width: 140px;">Date</th>
+            <th>Topic</th>
+            <th style="width: 220px;">Speaker(s)</th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body-winter">
           <!-- Filled by JavaScript -->
         </tbody>
       </table>
@@ -329,7 +353,15 @@
      * If topic/speakers are unknown, use "TBD".
      */
 
-    const SCHEDULE = [
+    const SCHEDULE_SPRING_2026 = [
+      { date: "2026-04-24", topic: "Discrete Diffusion Models", note_url: "", paper_urls: ["https://arxiv.org/abs/2402.04997", "https://arxiv.org/abs/2407.15595"], speakers: "Andre He" },
+      { date: "2026-05-01", topic: "Diffusion Schrodinger Bridge", note_url: "", paper_urls: ["https://arxiv.org/abs/2303.16852", "https://arxiv.org/abs/2106.01357", "https://arxiv.org/abs/2409.09347"], speakers: "Garrett Mulcahy" },
+      { date: "2026-05-15", topic: "TBD", note_url: "", paper_urls: [], speakers: "TBD" },
+      { date: "2026-05-22", topic: "TBD", note_url: "", paper_urls: [], speakers: "TBD" },
+      { date: "2026-05-29", topic: "TBD", note_url: "", paper_urls: [], speakers: "TBD" },
+    ];
+
+    const SCHEDULE_WINTER_2026 = [
       { date: "2026-02-03", topic: "Introduction of Normalizing Flows and Flow Matchings ", note_url: "materials/flow_reading/Flows_Reading_Group_2_03_26.pdf", paper_urls: ["https://arxiv.org/abs/2210.02747", "https://arxiv.org/abs/2310.03725"], speakers: "Facheng Yu" },
       { date: "2026-02-10", topic: "Stochastic Interpolants and Flows - Part 1", note_url: "materials/flow_reading/Flows_Reading_Group_2_10_26.pdf", paper_urls: ["https://www.jmlr.org/papers/v26/23-1605.html"], speakers: "Garrett Mulcahy" },
       { date: "2026-02-17", topic: "Stochastic Interpolants and Flows - Part 2", note_url: "materials/flow_reading/Flows_Reading_Group_2_17_26.pdf", paper_urls: ["https://www.jmlr.org/papers/v26/23-1605.html"], speakers: "Garrett Mulcahy" },
@@ -340,68 +372,61 @@
       // { date: "2026-03-17", topic: "TBD", speakers: "TBD" }
     ];
 
-    // Render table
-    const tbody = document.getElementById("schedule-body");
+    function renderScheduleTable(tbody, schedule) {
+      const rows = schedule.slice().sort((a, b) => a.date.localeCompare(b.date));
 
-    // Sort ascending by date
-    SCHEDULE.sort((a, b) => a.date.localeCompare(b.date));
+      for (const item of rows) {
+        const tr = document.createElement("tr");
 
-    for (const item of SCHEDULE) {
-      const tr = document.createElement("tr");
+        const tdDate = document.createElement("td");
+        tdDate.textContent = item.date;
 
-      const tdDate = document.createElement("td");
-      tdDate.textContent = item.date;
+        const tdTopic = document.createElement("td");
+        const topicText = (item.topic || "").trim();
 
-      const tdTopic = document.createElement("td");
-      // ---- Topic cell rendering (replace your current tdTopic code with this) ----
-const topicText = (item.topic || "").trim();
+        const links = [];
 
-// Build links
-const links = [];
+        if (item.note_url) {
+          links.push(
+            `<a class="topic-link" href="${item.note_url}" target="_blank" rel="noopener noreferrer">Notes</a>`
+          );
+        }
 
-// Note
-if (item.note_url) {
-  links.push(
-    `<a class="topic-link" href="${item.note_url}" target="_blank" rel="noopener noreferrer">Notes</a>`
-  );
-}
+        const paperList = Array.isArray(item.paper_urls)
+          ? item.paper_urls
+          : (item.paper_url ? [item.paper_url] : []);
 
-// Paper(s): support either paper_url (single) or paper_urls (array)
-const paperList = Array.isArray(item.paper_urls)
-  ? item.paper_urls
-  : (item.paper_url ? [item.paper_url] : []);
+        if (paperList.length === 1) {
+          links.push(
+            `<a class="topic-link" href="${paperList[0]}" target="_blank" rel="noopener noreferrer">Paper</a>`
+          );
+        } else if (paperList.length > 1) {
+          const paperLinks = paperList.map((u, idx) =>
+            `<a class="topic-link" href="${u}" target="_blank" rel="noopener noreferrer">Paper${idx + 1}</a>`
+          );
+          links.push(paperLinks.join(", "));
+        }
 
-if (paperList.length === 1) {
-  links.push(
-    `<a class="topic-link" href="${paperList[0]}" target="_blank" rel="noopener noreferrer">Paper</a>`
-  );
-} else if (paperList.length > 1) {
-  const paperLinks = paperList.map((u, idx) =>
-    `<a class="topic-link" href="${u}" target="_blank" rel="noopener noreferrer">Paper${idx + 1}</a>`
-  );
-  links.push(paperLinks.join(", "));
-}
+        const showLinks = topicText && topicText.toUpperCase() !== "TBD" && links.length > 0;
 
-// Show the second line only if:
-// 1) topic is not TBD, and 2) at least one link exists
-const showLinks = topicText && topicText.toUpperCase() !== "TBD" && links.length > 0;
-
-tdTopic.innerHTML = `
+        tdTopic.innerHTML = `
   <div class="topic">${escapeHtml(topicText || "TBD")}</div>
   ${showLinks ? `<div class="topic-links">[ ${links.join(" / ")} ]</div>` : ""}
 `;
 
+        const tdSpeakers = document.createElement("td");
+        tdSpeakers.textContent = item.speakers;
 
+        tr.appendChild(tdDate);
+        tr.appendChild(tdTopic);
+        tr.appendChild(tdSpeakers);
 
-      const tdSpeakers = document.createElement("td");
-      tdSpeakers.textContent = item.speakers;
-
-      tr.appendChild(tdDate);
-      tr.appendChild(tdTopic);
-      tr.appendChild(tdSpeakers);
-
-      tbody.appendChild(tr);
+        tbody.appendChild(tr);
+      }
     }
+
+    renderScheduleTable(document.getElementById("schedule-body-spring"), SCHEDULE_SPRING_2026);
+    renderScheduleTable(document.getElementById("schedule-body-winter"), SCHEDULE_WINTER_2026);
 
     // Footer timestamp
     document.getElementById("last-updated").textContent =
